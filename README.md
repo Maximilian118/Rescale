@@ -20,7 +20,17 @@ xcode-select --install
 
 A dialog will appear asking to install the tools. Click **Install** and wait for it to finish. This can take a few minutes.
 
-### 2. Install Homebrew
+### 2. Accept Xcode License
+
+Before the tools can be used, the Xcode license agreement must be accepted. In Terminal:
+
+```
+sudo xcodebuild -license accept
+```
+
+Enter the Mac login password when prompted. (Note: nothing will appear on screen while typing the password — this is normal.)
+
+### 3. Install Homebrew (if not already installed)
 
 Homebrew is a package manager that makes it easy to install developer tools. In the same Terminal window, paste:
 
@@ -30,7 +40,7 @@ Homebrew is a package manager that makes it easy to install developer tools. In 
 
 Follow the on-screen prompts. When it finishes, it may tell you to run two extra commands to add Homebrew to your PATH — copy and run those if prompted.
 
-### 3. Install XcodeGen
+### 4. Install XcodeGen
 
 XcodeGen generates the Xcode project file from the project configuration. In Terminal:
 
@@ -38,7 +48,7 @@ XcodeGen generates the Xcode project file from the project configuration. In Ter
 brew install xcodegen
 ```
 
-### 4. Download Rescale
+### 5. Download Rescale
 
 In Terminal, navigate to where you want to keep the project and clone it:
 
@@ -48,7 +58,7 @@ git clone https://github.com/Maximilian118/Rescale.git
 cd Rescale
 ```
 
-### 5. Build the App
+### 6. Build the App
 
 Generate the Xcode project and build:
 
@@ -59,7 +69,7 @@ xcodebuild -project Rescale.xcodeproj -scheme Rescale build
 
 Wait for `** BUILD SUCCEEDED **` to appear.
 
-### 6. Find and Launch the App
+### 7. Find and Launch the App
 
 The built app is buried in Xcode's build folder. To open it:
 
@@ -69,7 +79,7 @@ open ~/Library/Developer/Xcode/DerivedData/Rescale-*/Build/Products/Debug/Rescal
 
 A small **display icon** will appear in the menu bar (top-right of the screen, near the Wi-Fi and battery icons).
 
-### 7. Optional: Move the App Somewhere Permanent
+### 8. Optional: Move the App Somewhere Permanent
 
 To keep the app in the Applications folder:
 
