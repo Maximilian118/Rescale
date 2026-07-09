@@ -1,0 +1,28 @@
+name: Rescale
+options:
+  bundleIdPrefix: com.rescale
+  deploymentTarget:
+    macOS: "14.0"
+
+targets:
+  Rescale:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Rescale
+        excludes:
+          - "**/*.md"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rescale.app
+        INFOPLIST_KEY_LSUIElement: true
+        SWIFT_VERSION: "6.0"
+        CODE_SIGN_ENTITLEMENTS: Rescale/Rescale.entitlements
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGN_IDENTITY: "-"
+        DEVELOPMENT_TEAM: ""
+        SWIFT_STRICT_CONCURRENCY: minimal
+        SWIFT_OBJC_BRIDGING_HEADER: Rescale/Rescale-Bridging-Header.h
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
