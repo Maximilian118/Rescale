@@ -1,29 +1,29 @@
 # Rescale
 
-A macOS menu bar app that lets you **scale UI elements on external monitors without changing display resolution**.
+A macOS menu bar app that **scales UI elements on external monitors without changing display resolution**.
 
 ## Why This Exists
 
-macOS doesn't let you independently scale UI elements on external monitors. The "More Space" and "Less Space" options in System Settings actually change the resolution your display receives — your expensive 5K monitor ends up running at 1440p with everything looking blurry.
+macOS doesn't offer independent UI element scaling on external monitors. The "More Space" and "Less Space" options in System Settings actually change the resolution the display receives — a high-resolution monitor ends up running at a lower resolution with everything looking blurry.
 
-If you run at native resolution, the UI is too small to read. If you scale down, the display isn't running at its full resolution. There's no middle ground.
+Running at native resolution makes the UI too small to read on many high-DPI panels. Scaling down means the display isn't running at its full resolution. There's no middle ground.
 
 Rescale fixes this.
 
 ## What It Does
 
-Rescale keeps your monitor at its **full native resolution** while making UI elements (text, menu bar, window chrome, buttons) larger or smaller. Your display always outputs at its maximum pixel count — only the logical rendering size changes.
+Rescale keeps external monitors at their **full native resolution** while making UI elements (text, menu bar, window chrome, buttons) larger or smaller. The display always outputs at its maximum pixel count — only the logical rendering size changes.
 
 ## How It Works (Technical)
 
-Rescale uses macOS's private `CGVirtualDisplay` API to create a virtual HiDPI display, then configures your physical monitor to mirror it:
+Rescale uses macOS's private `CGVirtualDisplay` API to create a virtual HiDPI display, then configures the physical monitor to mirror it:
 
-1. **Creates a virtual display** at your chosen logical resolution with HiDPI (2×) backing — e.g., 3658×1542 logical with a 7316×3084 backing store
-2. **Mirrors your physical monitor** to the virtual display using `CGConfigureDisplayMirrorOfDisplay` — macOS renders UI at the virtual display's logical resolution
-3. **Your monitor stays at native resolution** — macOS composites the HiDPI-rendered content onto your display's native pixel grid
-4. **Protects other displays** — the built-in MacBook display and any other monitors are explicitly pinned to their current positions and states in every configuration transaction
+1. **Creates a virtual display** at the chosen logical resolution with HiDPI (2×) backing — e.g., 3658×1542 logical with a 7316×3084 backing store
+2. **Mirrors the physical monitor** to the virtual display using `CGConfigureDisplayMirrorOfDisplay` — macOS renders UI at the virtual display's logical resolution
+3. **The monitor stays at native resolution** — macOS composites the HiDPI-rendered content onto the display's native pixel grid
+4. **Protects other displays** — the built-in display and any other monitors are explicitly pinned to their current positions and states in every configuration transaction
 
-The result: macOS renders UI as if your display were a lower resolution (bigger elements), but your monitor receives a full-resolution signal.
+The result: macOS renders UI as if the display were a lower resolution (bigger elements), but the monitor receives a full-resolution signal.
 
 ### Color Matching
 
@@ -75,7 +75,7 @@ The built app will be at:
 ## Usage
 
 1. Build and launch `Rescale.app` — a display icon appears in the menu bar
-2. Click the icon to see your connected external monitors
+2. Click the icon to see connected external monitors
 3. Drag the **UI Scale** slider to adjust UI element size
 4. Slide left for larger UI, right for more screen space
 5. The change takes a moment to apply while the virtual display is created
