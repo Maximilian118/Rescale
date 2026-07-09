@@ -125,7 +125,8 @@ struct MonitorCardView: View {
 
     // MARK: - Helpers
 
-    /// Syncs slider position from the monitor's current virtual display state.
+    /// Syncs slider position from the monitor's current virtual display state,
+    /// or from saved settings if no virtual display is active yet.
     private func syncFromMonitor() {
         let service = VirtualDisplayService.shared
         if let activeWidth = service.currentLogicalWidth(for: monitor.displayID) {
@@ -134,20 +135,32 @@ struct MonitorCardView: View {
                 return
             }
         }
+        // Check for a saved scale index from a previous session
+        if let savedIdx = ScaleSettingsStore.loadScale(for: monitor.displayID),
+           steps.indices.contains(savedIdx) {
+            scaleIndex = Double(savedIdx)
+            return
+        }
         scaleIndex = 0
     }
 
-    /// Applies the selected scale step via the virtual display service.
+    /// Applies the selected scale step via the virtual display service
+    /// and saves the setting to UserDefaults for persistence across restarts.
     private func applyScale() {
         guard isReady, let step = currentStep else { return }
 
         let service = VirtualDisplayService.shared
+        let idx = Int(scaleIndex.rounded())
 
         // Index 0 = native resolution, disable virtual display
-        if Int(scaleIndex.rounded()) == 0 {
+        if idx == 0 {
             service.disableHiDPI(for: monitor.displayID)
+            ScaleSettingsStore.removeScale(for: monitor.displayID)
             return
         }
+
+        // Save the scale index for this display so it persists across restarts
+        ScaleSettingsStore.saveScale(index: idx, for: monitor.displayID)
 
         isApplyingScale = true
         Task {

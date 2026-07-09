@@ -2,6 +2,13 @@
 
 All notable changes to Rescale will be documented in this file.
 
+## [0.2.0] - 2026-07-09
+
+### Added
+- Launch at login toggle — enable via the switch in the dropdown menu
+- Persistent scale settings — saved per display and automatically restored on app launch
+- Scale settings keyed by vendor/product ID so they survive display ID changes across reboots
+
 ## [0.1.0] - 2026-07-09
 
 ### Added

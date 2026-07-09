@@ -11,6 +11,14 @@ struct ContentView: View {
         }
     }
 
+    /// Binding for the launch-at-login toggle backed by ScaleSettingsStore.
+    private var launchAtLoginBinding: Binding<Bool> {
+        Binding(
+            get: { ScaleSettingsStore.launchAtLogin },
+            set: { ScaleSettingsStore.launchAtLogin = $0 }
+        )
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             if externalMonitors.isEmpty {
@@ -37,9 +45,24 @@ struct ContentView: View {
 
             Divider().opacity(0.4)
 
+            // Launch at login toggle
+            HStack {
+                Toggle(isOn: launchAtLoginBinding) {
+                    Text("Launch at login")
+                        .font(.caption)
+                }
+                .toggleStyle(.switch)
+                .controlSize(.mini)
+            }
+            .padding(.horizontal, 12)
+            .padding(.top, 8)
+            .padding(.bottom, 4)
+
+            Divider().opacity(0.4)
+
             // Footer
             HStack {
-                Text("Rescale v0.1.0")
+                Text("Rescale v0.2.0")
                     .font(.caption2)
                     .foregroundColor(.secondary)
                 Spacer()
