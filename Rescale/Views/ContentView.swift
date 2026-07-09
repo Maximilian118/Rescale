@@ -49,13 +49,14 @@ struct ContentView: View {
             HStack {
                 Toggle(isOn: launchAtLoginBinding) {
                     Text("Launch at login")
-                        .font(.caption)
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
                 }
                 .toggleStyle(.switch)
                 .controlSize(.mini)
             }
             .padding(.horizontal, 12)
-            .padding(.vertical, 10)
+            .padding(.vertical, 12)
 
             Divider().opacity(0.4)
 
