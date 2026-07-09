@@ -84,13 +84,6 @@ final class Monitor: ObservableObject, Identifiable {
 
     var nativeResolutionLabel: String { "\(nativeWidth) × \(nativeHeight)" }
 
-    /// The current display output resolution, read live from CoreGraphics.
-    var currentResolutionLabel: String {
-        let w = Int(CGDisplayPixelsWide(displayID))
-        let h = Int(CGDisplayPixelsHigh(displayID))
-        return "\(w) × \(h)"
-    }
-
     /// Generates UI scale steps from 100% (native 1:1) up to 200% (2× magnification).
     /// Each step is a logical resolution the virtual display will use, producing
     /// progressively larger UI elements while the physical output stays at native resolution.

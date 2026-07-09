@@ -38,7 +38,7 @@ struct MonitorCardView: View {
                     Text(monitor.name)
                         .font(.headline)
                         .lineLimit(1)
-                    Text(monitor.currentResolutionLabel)
+                    Text(monitor.nativeResolutionLabel)
                         .font(.caption2)
                         .foregroundColor(.secondary)
                 }

@@ -2,6 +2,15 @@
 
 All notable changes to Rescale will be documented in this file.
 
+## [0.3.0] - 2026-07-09
+
+### Changed
+- Resolution readout now shows the display's native panel resolution instead of the macOS logical mode, which changes during HiDPI mirroring
+
+### Removed
+- Removed `restoreNativeMode` — macOS constrains available modes within a mirror set, making post-mirror mode switching ineffective
+- Removed `currentResolutionLabel` in favour of the fixed `nativeResolutionLabel`
+
 ## [0.2.0] - 2026-07-09
 
 ### Added

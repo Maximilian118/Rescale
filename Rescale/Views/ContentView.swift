@@ -62,7 +62,7 @@ struct ContentView: View {
 
             // Footer
             HStack {
-                Text("Rescale v0.2.0")
+                Text("Rescale v0.3.0")
                     .font(.caption2)
                     .foregroundColor(.secondary)
                 Spacer()
