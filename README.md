@@ -12,7 +12,7 @@ Rescale fixes this. It keeps the monitor running at its full resolution while ma
 
 ### Download (Recommended)
 
-1. Download **[Rescale-v0.1.0-macOS.zip](https://github.com/Maximilian118/Rescale/releases/latest)** from the Releases page
+1. Download **[Rescale-v0.2.0-macOS.zip](https://github.com/Maximilian118/Rescale/releases/latest)** from the Releases page
 2. Unzip it
 3. Drag **Rescale.app** to the **Applications** folder
 4. **Right-click** the app → click **Open** (required the first time — macOS blocks unsigned apps by default)

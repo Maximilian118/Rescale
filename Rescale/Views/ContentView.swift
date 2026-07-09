@@ -55,8 +55,7 @@ struct ContentView: View {
                 .controlSize(.mini)
             }
             .padding(.horizontal, 12)
-            .padding(.top, 8)
-            .padding(.bottom, 4)
+            .padding(.vertical, 10)
 
             Divider().opacity(0.4)
 
