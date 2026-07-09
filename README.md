@@ -8,86 +8,67 @@ When using a high-resolution external monitor with a Mac, everything on screen c
 
 Rescale fixes this. It keeps the monitor running at its full resolution while making everything on screen bigger or smaller — the way scaling should work.
 
-## Installation (Step by Step)
+## Installation
 
-### 1. Install Xcode Command Line Tools
+### Download (Recommended)
 
-Open **Terminal** (search for "Terminal" in Spotlight, or find it in Applications > Utilities) and paste:
+1. Download **[Rescale-v0.1.0-macOS.zip](https://github.com/Maximilian118/Rescale/releases/latest)** from the Releases page
+2. Unzip it
+3. Drag **Rescale.app** to the **Applications** folder
+4. **Right-click** the app → click **Open** (required the first time — macOS blocks unsigned apps by default)
+5. A display icon appears in the menu bar — click it to get started
 
-```
-xcode-select --install
-```
+> **Note:** If macOS shows "Apple cannot check it for malicious software", go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**.
 
-A dialog will appear asking to install the tools. Click **Install** and wait for it to finish. This can take a few minutes.
+### Build from Source
 
-### 2. Accept Xcode License
+For developers who want to build from source or contribute:
 
-Before the tools can be used, the Xcode license agreement must be accepted. In Terminal:
+<details>
+<summary>Click to expand build instructions</summary>
 
-```
-sudo xcodebuild -license accept
-```
+#### Prerequisites
 
-Enter the Mac login password when prompted. (Note: nothing will appear on screen while typing the password — this is normal.)
+1. Install Xcode Command Line Tools:
+   ```
+   xcode-select --install
+   ```
 
-### 3. Install Homebrew (if not already installed)
+2. Accept the Xcode license:
+   ```
+   sudo xcodebuild -license accept
+   ```
 
-Homebrew is a package manager that makes it easy to install developer tools. In the same Terminal window, paste:
+3. Install [Homebrew](https://brew.sh) (if not already installed):
+   ```
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
 
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+4. Install XcodeGen:
+   ```
+   brew install xcodegen
+   ```
 
-Follow the on-screen prompts. When it finishes, it may tell you to run two extra commands to add Homebrew to your PATH — copy and run those if prompted.
+#### Build and Run
 
-### 4. Install XcodeGen
-
-XcodeGen generates the Xcode project file from the project configuration. In Terminal:
-
-```
-brew install xcodegen
-```
-
-### 5. Download Rescale
-
-In Terminal, navigate to where you want to keep the project and clone it:
-
-```
-cd ~/Downloads
+```bash
 git clone https://github.com/Maximilian118/Rescale.git
 cd Rescale
-```
-
-### 6. Build the App
-
-Generate the Xcode project and build:
-
-```
 xcodegen generate
-xcodebuild -project Rescale.xcodeproj -scheme Rescale build
+xcodebuild -project Rescale.xcodeproj -scheme Rescale -configuration Release build
 ```
 
-Wait for `** BUILD SUCCEEDED **` to appear.
-
-### 7. Find and Launch the App
-
-The built app is buried in Xcode's build folder. To open it:
-
+The built app will be at:
 ```
-open ~/Library/Developer/Xcode/DerivedData/Rescale-*/Build/Products/Debug/Rescale.app
+~/Library/Developer/Xcode/DerivedData/Rescale-*/Build/Products/Release/Rescale.app
 ```
 
-A small **display icon** will appear in the menu bar (top-right of the screen, near the Wi-Fi and battery icons).
-
-### 8. Optional: Move the App Somewhere Permanent
-
-To keep the app in the Applications folder:
-
+Copy it to Applications:
 ```
-cp -r ~/Library/Developer/Xcode/DerivedData/Rescale-*/Build/Products/Debug/Rescale.app /Applications/
+cp -r ~/Library/Developer/Xcode/DerivedData/Rescale-*/Build/Products/Release/Rescale.app /Applications/
 ```
 
-Then launch it from Applications like any other app.
+</details>
 
 ## How to Use
 
